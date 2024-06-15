@@ -2,26 +2,26 @@
 
 ## Overview
 
-Cloud-Judge 是一个基于 Kubernetes (k8s) 的云原生在线判题平台，专为编程竞赛和算法挑战设计。它利用云计算的强大能力，为用户提供了一个可伸缩、高可用的在线编程环境。Cloud-Judge 支持多种编程语言，包括但不限于 Java 和 Go，允许开发者在云上提交代码，即时获得反馈和评分。
+Cloud-Judge is a cloud-native online judging platform built on Kubernetes (k8s), designed for programming contests and algorithm challenges. It leverages the power of cloud computing to provide users with a scalable and highly available online coding environment. Cloud-Judge supports multiple programming languages, including but not limited to Java and Go, allowing developers to submit code in the cloud and receive immediate feedback and scoring.
 
 ## Key Features
 
-- **多语言支持**：支持 Java、Go 等多种编程语言，满足不同开发者的需求。
-- **云原生架构**：基于 Kubernetes 构建，确保平台的高可用性和弹性伸缩。
-- **实时反馈**：提供即时的代码评测结果，帮助开发者快速定位问题。
-- **安全性**：采用云安全最佳实践，保护用户数据和代码的安全。
-- **易于集成**：提供丰富的 API，方便与其他系统集成。
+- **Multi-Language Support**: Supports a variety of programming languages, including Java and Go.
+- **Cloud-Native Architecture**: Built on Kubernetes for high availability and elastic scaling.
+- **Real-Time Feedback**: Provides immediate code evaluation results to help developers quickly identify issues.
+- **Security**: Adheres to cloud security best practices to protect user data and code.
+- **Easy Integration**: Offers a rich set of APIs for easy integration with other systems.
 
 ## Description
 
-Cloud-Judge 是为编程爱好者和专业开发者设计的在线判题平台。它不仅提供了一个展示编程技能的舞台，还为教育和企业培训提供了一个强大的工具。利用 Kubernetes 的强大功能，Cloud-Judge 能够轻松处理高并发的代码提交和评测任务，同时保持系统的稳定性和响应速度。
+Cloud-Judge is designed for coding enthusiasts and professional developers. It not only provides a stage to showcase programming skills but also serves as a powerful tool for educational and corporate training. Utilizing the capabilities of Kubernetes, Cloud-Judge can handle high-concurrency code submissions and evaluations while maintaining system stability and response speed.
 
-### 技术亮点
+### Technical Highlights
 
-- **容器化部署**：所有服务都运行在 Docker 容器中，通过 Kubernetes 进行管理，确保环境一致性和快速部署。
-- **自动扩展**：根据负载自动调整资源，优化成本和性能。
-- **持续集成/持续部署 (CI/CD)**：集成了 CI/CD 流程，支持代码的自动化构建和部署。
-- **微服务架构**：采用微服务架构设计，提高了系统的可维护性和可扩展性。
+- **Containerized Deployment**: All services run in Docker containers, managed by Kubernetes, ensuring consistent environments and rapid deployment.
+- **Auto-Scaling**: Automatically adjusts resources based on load, optimizing cost and performance.
+- **Continuous Integration/Continuous Deployment (CI/CD)**: Integrated CI/CD processes support automated code building and deployment.
+- **Microservices Architecture**: Designed with a microservices architecture for maintainability and scalability.
 
 ## Getting Started
 
