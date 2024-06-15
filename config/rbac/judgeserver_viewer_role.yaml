@@ -1,0 +1,23 @@
+# permissions for end users to view judgeservers.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    app.kubernetes.io/name: cloud-judge
+    app.kubernetes.io/managed-by: kustomize
+  name: judgeserver-viewer-role
+rules:
+- apiGroups:
+  - judge.wecoding.top
+  resources:
+  - judgeservers
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - judge.wecoding.top
+  resources:
+  - judgeservers/status
+  verbs:
+  - get

@@ -1,0 +1,9 @@
+apiVersion: judge.wecoding.top/v1
+kind: JudgeServer
+metadata:
+  labels:
+    app.kubernetes.io/name: cloud-judge
+    app.kubernetes.io/managed-by: kustomize
+  name: judgeserver-sample
+spec:
+  # TODO(user): Add fields here
