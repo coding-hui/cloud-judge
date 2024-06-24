@@ -19,10 +19,10 @@ package controller
 import (
 	"context"
 
+	apierrors "k8s.io/apimachinery/pkg/api/errors"
 	"k8s.io/apimachinery/pkg/runtime"
 	ctrl "sigs.k8s.io/controller-runtime"
 	"sigs.k8s.io/controller-runtime/pkg/client"
-	"sigs.k8s.io/controller-runtime/pkg/log"
 
 	judgev1 "github.com/coding-hui/cloud-judge/api/v1"
 )
@@ -39,7 +39,7 @@ type JudgeServerReconciler struct {
 
 // Reconcile is part of the main kubernetes reconciliation loop which aims to
 // move the current state of the cluster closer to the desired state.
-// TODO(user): Modify the Reconcile function to compare the state specified by
+// Modify the Reconcile function to compare the state specified by
 // the JudgeServer object against the actual cluster state, and then
 // perform operations to make the cluster state reflect the state specified by
 // the user.
@@ -47,11 +47,23 @@ type JudgeServerReconciler struct {
 // For more details, check Reconcile and its Result here:
 // - https://pkg.go.dev/sigs.k8s.io/controller-runtime@v0.18.2/pkg/reconcile
 func (r *JudgeServerReconciler) Reconcile(ctx context.Context, req ctrl.Request) (ctrl.Result, error) {
-	_ = log.FromContext(ctx)
+	logger := ctrl.LoggerFrom(ctx)
+	var err error
 
-	// TODO(user): your logic here
+	judgeServer := &judgev1.JudgeServer{}
+	if err = r.Get(ctx, req.NamespacedName, judgeServer); err == nil {
+		return r.judgeServerReconcile(ctx, req, judgeServer)
+	}
 
-	return ctrl.Result{}, nil
+	// No match found
+	if apierrors.IsNotFound(err) {
+		logger.Info("Read request judge server not found error!")
+	} else {
+		logger.Error(err, "Read request judge server error!")
+	}
+
+	// Error reading the object - requeue the request.
+	return ctrl.Result{}, client.IgnoreNotFound(err)
 }
 
 // SetupWithManager sets up the controller with the Manager.
@@ -59,4 +71,8 @@ func (r *JudgeServerReconciler) SetupWithManager(mgr ctrl.Manager) error {
 	return ctrl.NewControllerManagedBy(mgr).
 		For(&judgev1.JudgeServer{}).
 		Complete(r)
+}
+
+func (r *JudgeServerReconciler) judgeServerReconcile(ctx context.Context, req ctrl.Request, judgeServer *judgev1.JudgeServer) (ctrl.Result, error) {
+	return ctrl.Result{}, nil
 }

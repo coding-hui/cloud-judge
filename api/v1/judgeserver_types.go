@@ -30,12 +30,30 @@ type JudgeServerSpec struct {
 
 	// Foo is an example field of JudgeServer. Edit judgeserver_types.go to remove/update
 	Foo string `json:"foo,omitempty"`
+
+	// Size defines the number of Memcached instances
+	// The following markers will use OpenAPI v3 schema to validate the value
+	// More info: https://book.kubebuilder.io/reference/markers/crd-validation.html
+	// +kubebuilder:validation:Minimum=1
+	// +kubebuilder:validation:Maximum=3
+	// +kubebuilder:validation:ExclusiveMaximum=false
+	Size int32 `json:"size,omitempty"`
+
+	// Port defines the port that will be used to init the container with the image
+	ContainerPort int32 `json:"containerPort,omitempty"`
 }
 
 // JudgeServerStatus defines the observed state of JudgeServer
 type JudgeServerStatus struct {
-	// INSERT ADDITIONAL STATUS FIELD - define observed state of cluster
-	// Important: Run "make" to regenerate code after modifying this file
+	// JudgeServer.status.conditions.type are: "Available", "Progressing", and "Degraded"
+	// JudgeServer.status.conditions.status are one of True, False, Unknown.
+	// JudgeServer.status.conditions.reason the value should be a CamelCase string and producers of specific
+	// condition types may define expected values and meanings for this field, and whether the values
+	// are considered a guaranteed API.
+	// JudgeServer.status.conditions.Message is a human readable message indicating details about the transition.
+	// For further information see: https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#typical-status-properties
+
+	Conditions []metav1.Condition `json:"conditions,omitempty" patchStrategy:"merge" patchMergeKey:"type" protobuf:"bytes,1,rep,name=conditions"`
 }
 
 // +kubebuilder:object:root=true
